@@ -181,7 +181,11 @@ impl<L: Link> fmt::Debug for LinkedList<L, L::Target> {
     }
 }
 
-#[cfg(any(feature = "sync", feature = "signal", feature = "process"))]
+#[cfg(any(
+    all(unix, feature = "process"),
+    feature = "signal",
+    feature = "sync",
+))]
 impl<L: Link> LinkedList<L, L::Target> {
     pub(crate) fn last(&self) -> Option<&L::Target> {
         let tail = self.tail.as_ref()?;
