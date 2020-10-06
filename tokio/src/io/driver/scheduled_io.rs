@@ -32,7 +32,7 @@ cfg_io_readiness! {
 
 #[derive(Debug, Default)]
 struct Waiters {
-    #[cfg(any(feature = "udp", feature = "uds"))]
+    #[cfg(any(feature = "udp", all(unix, feature = "uds")))]
     /// List of all current waiters
     list: WaitList,
 
@@ -203,7 +203,7 @@ impl ScheduledIo {
             }
         }
 
-        #[cfg(any(feature = "udp", feature = "uds"))]
+        #[cfg(any(feature = "udp", all(unix, feature = "uds")))]
         {
             // check list of waiters
             for waiter in waiters.list.drain_filter(|w| ready.satisfies(w.interest)) {
