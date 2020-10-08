@@ -1,3 +1,7 @@
+**Conduit data plane** использует нижележащих Open Source-технологий: Tokio (событийная платформа ввода/вывода для создания сетевых асинхронных приложений) и Tower (лаконично описывается как fn(Request) → Future<Response>). Такой подход позволил авторам добиться минимальных задержек («sub-millisecond p99») и потребления памяти («10mb RSS»).
+  
+## Conduit — легковесный service mesh для Kubernetes
+
 # Tokio
 
 A runtime for writing reliable, asynchronous, and slim applications with
